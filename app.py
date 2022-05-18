@@ -19,7 +19,13 @@ mysql = MySQL(app)
 @app.route("/", methods = ["GET","POST"])
 def home():
     if request.method == 'GET' and "loggedin" in session:
-        return render_template('landing.html')
+
+        # get all users
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM user")
+        users = cur.fetchall()
+
+        return render_template('landing.html', users=users)
     if request.method == 'POST':
         if "signup-name" in request.form:
 

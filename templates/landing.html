@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div class="row justify-content-center mt-5">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <div class="text-center fw-bolder text-white">
+                        Home Page
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        You're now logged in !
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="https://nordicplacebranding.com/wp-content/uploads/2017/09/dummy-person-image.jpg" class="img-thumbnail" alt="">
+                        </div>
+                        <div class="col-9">
+                            <p class="mb-1"><strong>{{ session['name'] }}</strong> <span class="fst-italic text-secondary">({{ session['email'] }})</span></p>
+                            <a href="/logout" class="btn btn-sm btn-danger">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

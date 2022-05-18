@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 </head>
 <body>
     
@@ -36,40 +37,69 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-4">
-        <div class="col-6 border rounded p-3">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
 
-            <h3 class="mb-3">Table of Users</h3>
-
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Password</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                        <tr>
-                            <th scope="row">
-                                {{ loop.index }}
-                            </th>
-                            <th>
-                                {{ user[3] }}
-                            </th>
-                            <th>
-                                {{ user[1] }}
-                            </th>
-                            <th> *** </th>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <div class="text-center fw-bolder text-white">
+                        Table of Users
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col" colspan="2">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <th scope="row">
+                                        {{ loop.index }}
+                                    </th>
+                                    <td>
+                                        {{ user[3] }}
+                                    </td>
+                                    <td>
+                                        {{ user[1] }}
+                                    </td>
+                                    <td>
+                                        <span id="password{{ user[0] }}">***</span>
+                                    </td>
+                                    <td>
+                                        <i id="togglePassword{{ loop.index }}" class="bi bi-eye-slash" style="cursor: pointer;"></i>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    {% for user in users %}
+        <script>
+        
+            const togglePassword{{ loop.index }} = document.querySelector('#togglePassword{{ loop.index }}');
+
+            const password{{ loop.index }} = document.querySelector('#password{{ user[0] }}');
+
+            togglePassword{{ loop.index }}.addEventListener('click', () => {
+                password{{ loop.index }}.innerText = '{{ user[2] }}'
+
+            });
+
+            this.classList.toggle('bi-eye');
+            
+        </script>
+    {% endfor %}
 </body>
 </html>

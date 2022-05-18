@@ -74,7 +74,7 @@ def home():
                 session['loggedin'] = True
                 session['name'] = user[3]
                 session['email'] = user[1]
-                return render_template('landing.html')
+                return redirect(url_for('home'))
             else:
                 errorSignIn = "Invalid Credentials"
                 return render_template("login.html", errorSignIn=errorSignIn)
